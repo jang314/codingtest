@@ -15,10 +15,10 @@ public class Ex04 {
         }
 
         String[] strs = new String[input1];
-        int i=input1;
+        int i=input1+1;
         while(i > 0) {
             i--;
-            strs[i-1] = in.nextLine();
+            strs[i] = in.nextLine();
         }
 
 //        mySolution(strs);

@@ -7,25 +7,25 @@ public class Ex11 {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
-        int count = 1;
-        char ch = input.charAt(0);
+        System.out.print(mySolution(input));
+    }
+    private static String mySolution(String input) {
         StringBuffer sb = new StringBuffer();
-        for(int i = 0 ; i < input.length(); i++) {
-            if(ch == input.charAt(i)) {
-                count++;
-            } else {
+        char ch = input.charAt(0);
+        int count = 1;
+
+        for(int i = 1; i< input.length(); i++) {
+            if(input.charAt(i) != ch) {
                 sb.append(ch);
-                if(count >1) {
-                    sb.append(count);
-                }
+                if(count > 1)   sb.append(count);
                 ch = input.charAt(i);
-                count = 1;
+                count=1;
+            }else {
+                count++;
             }
         }
         sb.append(ch);
-        if(count >1) {
-            sb.append(count);
-        }
-        System.out.print(sb.toString());
+        if(count > 1)   sb.append(count);
+        return sb.toString();
     }
 }

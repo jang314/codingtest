@@ -5,14 +5,26 @@ import java.util.Scanner;
 public class Ex12 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
+        String total = sc.next();
+        String input = sc.next();
+        mySolution(Integer.parseInt(total),input);
+    }
+
+    private static String mySolution(int total, String input) {
         StringBuffer sb = new StringBuffer();
-        for(int i = 0 ; i<input.length(); i++) {
-            sb.append(input.charAt(i) == '#' ? 1: input.charAt(i) == '*' ? 0 : "");
+        String[][] array = new String[total][7];
+        String[] strArray = new String[total];
+
+        input = input.replaceAll("#", "1");
+        input = input.replaceAll("\\*","0");
+
+
+        for(int i = 0 ; i < total; i++) {
+            strArray[i] = input.substring(i * 7, ((i+1)*7));
+            System.out.print((char) Integer.parseInt(strArray[i], 2));
+
         }
 
-        String s = Integer.toBinaryString(Integer.parseInt(sb.toString()));
-        System.out.printf(s);
-
+        return sb.toString();
     }
 }

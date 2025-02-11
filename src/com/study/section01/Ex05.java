@@ -22,33 +22,24 @@ import java.util.regex.Pattern;
 public class Ex05 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        System.out.println(solution(input));
-    }
+        String input = sc.nextLine();
+        char[] array = input.toCharArray();
+        char[] answer = new char[array.length];
+        int eIdx = array.length-1;
 
-
-    private static String solution(String str) {
-        StringBuffer sb = new StringBuffer();
-        int lt = 0 ;
-        int gt = str.length() -1;
-        char[] ch = str.toCharArray();
-        while(lt < gt) {
-            if(!Character.isAlphabetic(ch[lt])) {
-                lt++;
-            } else if(!Character.isAlphabetic(ch[gt])) {
-                gt--;
+        for(int i = 0; i< array.length; i++) {
+            if(!Character.isAlphabetic(array[i])) {
+                answer[i] = array[i];
             } else {
-                char tmp = ch[lt];
-                ch[lt] = ch[gt];
-                ch[gt] = tmp;
-                lt++;
-                gt--;
+                while(!Character.isAlphabetic(array[eIdx])) {
+                    eIdx--;
+                }
+                answer[i] = array[eIdx];
+                eIdx--;
             }
         }
-        for(char c : ch) {
-            sb.append(c);
+        for(char aw : answer) {
+            System.out.printf("%c", aw);
         }
-        return sb.toString();
     }
-
 }

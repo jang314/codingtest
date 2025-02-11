@@ -9,40 +9,34 @@ public class Ex11 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int num = Integer.parseInt(sc.nextLine());
-        int[][] arrays = new int[num][5];
-        int[][] retArrays = new int[num][5];
+        int[][] arrays = new int[num+1][6];
 
-        for(int i = 0; i<num; i++) {
-            String input= sc.nextLine();
-            int[] splitArray = Arrays.stream(input.split(" ")).mapToInt(Integer::parseInt).toArray();
-            int j=0;
-            for(int array : splitArray) {
-                arrays[j][i] = array;
-                j++;
+        // 2차원 배열에 입력
+        for(int i=1; i<=num; i++) {
+            for(int j=1; j<=5; j++) {
+                arrays[i][j] = sc.nextInt();
             }
         }
 
-
-        int[] result = new int[100];
-        int idx = 0;
-        for(int i = 0 ; i < num ; i++) {
-            int[] dist = Arrays.stream(arrays[i])
-                    .distinct().toArray();
-            long count = 0;
-            for(int j = 0 ; j < num; j++) {
-                int target = arrays[i][j];
-                count += Arrays.stream(dist)
-                        .filter(d -> d != target)
-                        .count();
-
+        int max = Integer.MIN_VALUE;
+        int maxIdx = 1;
+        // 탐색
+        for(int i = 1; i < arrays.length; i++) {
+            int cnt = 0;
+            for(int j= 1; j < arrays.length; j++) {
+                for(int k = 1; k <= 5; k++) {
+                    if(arrays[i][k] == arrays[j][k]) {
+                        cnt++;
+                        break;
+                    }
+                }
             }
-            if(count > 0) {
-                result[idx++] = i;
+
+            if(cnt > max) {
+                max = cnt;
+                maxIdx = i;
             }
         }
-
-        Arrays.stream(result)
-                .filter(r -> r>0)
-                .forEach(r->System.out.printf("%d " , r));
+        System.out.printf("%d",maxIdx);
     }
 }
